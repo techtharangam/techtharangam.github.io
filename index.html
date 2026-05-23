@@ -11,7 +11,6 @@
   <meta property="og:url" content="https://techtharangam.github.io" />
   <meta property="og:type" content="website" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -32,7 +31,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -44,8 +42,16 @@
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .brand {
-      font-family: 'Syne', sans-serif;
+    h1, h2, h3, h4, .brand { font-family: 'Syne', sans-serif; }
+
+    /* ── WARM PARTICLE CANVAS ── */
+    #particles-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
     }
 
     /* ── KERALA MAP BG ── */
@@ -78,7 +84,6 @@
       letter-spacing: -0.02em;
       color: var(--text);
     }
-
     .brand span { color: var(--green); }
 
     .nav-cta {
@@ -95,7 +100,6 @@
     }
     .nav-cta:hover { opacity: 0.85; }
 
-    /* ── SECTIONS ── */
     section { position: relative; z-index: 1; }
 
     .container {
@@ -142,6 +146,15 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.4; }
     }
+
+    /* ── WARM GLOW PULSE on hero ── */
+    @keyframes warmGlow {
+      0%   { box-shadow: 0 0 0px 0px rgba(255,184,0,0); }
+      50%  { box-shadow: 0 0 80px 20px rgba(255,107,53,0.08); }
+      100% { box-shadow: 0 0 0px 0px rgba(255,184,0,0); }
+    }
+
+    #hero { animation: warmGlow 6s ease-in-out infinite; }
 
     h1 {
       font-size: clamp(2.4rem, 6vw, 4rem);
@@ -224,6 +237,60 @@
       letter-spacing: 0.06em;
     }
 
+    /* ── PAIN MIRROR ── */
+    .pain-mirror {
+      margin-top: 2.5rem;
+      padding: 2rem;
+      background: rgba(0,168,107,0.04);
+      border: 1px solid rgba(0,168,107,0.15);
+      border-radius: 16px;
+    }
+
+    .pain-mirror-intro {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .mirror-list {
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mirror-item {
+      font-size: 0.95rem;
+      color: var(--muted);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mirror-item:last-child { border-bottom: none; }
+
+    .mirror-conclusion {
+      margin-top: 1.25rem;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* ── ABOUT STORY ── */
+    .about-story {
+      background: rgba(0,168,107,0.04);
+      border-left: 3px solid var(--green);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    .about-story strong { color: var(--text); }
+    .about-story em { color: var(--green); font-style: normal; }
+
     /* ── PAIN ── */
     #pain {
       padding: 5rem 0;
@@ -266,17 +333,9 @@
       transform: translateY(-2px);
     }
 
-    .pain-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
+    .pain-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
 
-    .pain-card p {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
+    .pain-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
     .pain-card strong { color: var(--text); }
 
     .pain-closer {
@@ -323,12 +382,7 @@
       flex-shrink: 0;
     }
 
-    .company-loc {
-      display: block;
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 0.1rem;
-    }
+    .company-loc { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 0.1rem; }
 
     .salary-banner {
       margin-top: 2rem;
@@ -359,9 +413,7 @@
       align-items: center;
     }
 
-    @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
 
     .photo-block {
       width: 100%;
@@ -386,10 +438,7 @@
       background: linear-gradient(135deg, rgba(0,168,107,0.1), transparent);
     }
 
-    .cred-list {
-      list-style: none;
-      margin: 1.25rem 0;
-    }
+    .cred-list { list-style: none; margin: 1.25rem 0; }
 
     .cred-list li {
       display: flex;
@@ -484,26 +533,61 @@
     .service-card h3 {
       font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
       color: var(--text);
     }
 
-    .service-price {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--green);
+    /* ── AFFORDABLE BADGE (replaces price) ── */
+    .service-price-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0,168,107,0.1);
+      border: 1px solid rgba(0,168,107,0.25);
+      border-radius: 20px;
+      padding: 0.3rem 0.85rem;
       font-family: 'Syne', sans-serif;
-      margin-bottom: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
     }
 
-    .service-card.featured .service-price { color: var(--saffron); }
-
-    .service-after {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.55;
+    .service-price-tag::before {
+      content: '✦';
+      font-size: 0.6rem;
+      color: var(--green);
     }
 
+    .service-card.featured .service-price-tag {
+      background: rgba(255,107,53,0.1);
+      border-color: rgba(255,107,53,0.3);
+      color: var(--saffron);
+    }
+
+    .service-card.featured .service-price-tag::before { color: var(--saffron); }
+
+    /* ── WARM FLOAT ANIMATION on service cards ── */
+    @keyframes floatWarm {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-5px); }
+    }
+
+    .service-card:nth-child(1) { animation: floatWarm 5.5s ease-in-out infinite; }
+    .service-card:nth-child(2) { animation: floatWarm 6.2s ease-in-out 0.4s infinite; }
+    .service-card:nth-child(3) { animation: floatWarm 5.8s ease-in-out 0.8s infinite; }
+    .service-card:nth-child(4) { animation: floatWarm 6.5s ease-in-out 1.2s infinite; }
+    .service-card:nth-child(5) { animation: floatWarm 5.3s ease-in-out 0.2s infinite; }
+    .service-card:nth-child(6) { animation: floatWarm 6.8s ease-in-out 0.6s infinite; }
+    .service-card:nth-child(7) { animation: floatWarm 5.7s ease-in-out 1.0s infinite; }
+    .service-card:nth-child(8) { animation: floatWarm 6.1s ease-in-out 1.4s infinite; }
+
+    /* Pause float on hover so card stays stable */
+    .service-card:hover { animation-play-state: paused; }
+
+    .service-after { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
     .service-after strong { color: var(--text); }
 
     .featured-tag {
@@ -533,9 +617,7 @@
       position: relative;
     }
 
-    @media (max-width: 640px) {
-      .steps { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 640px) { .steps { grid-template-columns: 1fr; } }
 
     .steps::before {
       content: '';
@@ -550,10 +632,7 @@
 
     @media (max-width: 640px) { .steps::before { display: none; } }
 
-    .step {
-      text-align: center;
-      padding: 1.5rem 1rem;
-    }
+    .step { text-align: center; padding: 1.5rem 1rem; }
 
     .step-num {
       width: 3.5rem; height: 3.5rem;
@@ -570,15 +649,8 @@
       margin: 0 auto 1rem;
     }
 
-    .step h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .step p {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    .step h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.85rem; color: var(--muted); }
 
     /* ── URGENCY ── */
     #urgency {
@@ -599,30 +671,16 @@
       flex-wrap: wrap;
     }
 
-    .urgency-text h3 {
-      font-size: 1.3rem;
-      color: var(--saffron);
-      margin-bottom: 0.3rem;
-    }
+    .urgency-text h3 { font-size: 1.3rem; color: var(--saffron); margin-bottom: 0.3rem; }
+    .urgency-text p { font-size: 0.9rem; color: var(--muted); }
 
-    .urgency-text p {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .slots {
-      display: flex;
-      gap: 0.4rem;
-    }
-
+    .slots { display: flex; gap: 0.4rem; }
     .slot { width: 16px; height: 16px; border-radius: 50%; }
     .slot.open { background: var(--green); box-shadow: 0 0 8px rgba(0,168,107,0.5); }
     .slot.taken { background: var(--subtle); border: 1px solid var(--border); }
 
     /* ── TRUST ── */
-    #trust {
-      padding: 5rem 0;
-    }
+    #trust { padding: 5rem 0; }
 
     .trust-grid {
       display: grid;
@@ -646,11 +704,7 @@
       color: var(--green);
     }
 
-    .trust-card p {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
+    .trust-card p { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
 
     .ceh-badge {
       display: inline-flex;
@@ -674,10 +728,7 @@
 
     .faq-list { margin-top: 2rem; }
 
-    details {
-      border-bottom: 1px solid var(--border);
-      padding: 1.25rem 0;
-    }
+    details { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
 
     summary {
       cursor: pointer;
@@ -693,22 +744,9 @@
     }
 
     summary::-webkit-details-marker { display: none; }
-
-    summary::after {
-      content: '+';
-      color: var(--green);
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
+    summary::after { content: '+'; color: var(--green); font-size: 1.2rem; flex-shrink: 0; }
     details[open] summary::after { content: '−'; }
-
-    details p {
-      margin-top: 0.9rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+    details p { margin-top: 0.9rem; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
 
     /* ── CTA ── */
     #cta {
@@ -718,25 +756,10 @@
     }
 
     #cta h2 { margin-bottom: 0.75rem; }
+    #cta p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1rem; }
 
-    #cta p {
-      color: var(--muted);
-      margin-bottom: 2.5rem;
-      font-size: 1rem;
-    }
-
-    .ml-cta {
-      font-size: 0.9rem;
-      color: rgba(0,168,107,0.6);
-      margin-top: 1.5rem;
-      font-style: italic;
-    }
-
-    .cta-assurance {
-      margin-top: 1rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
+    .ml-cta { font-size: 0.9rem; color: rgba(0,168,107,0.6); margin-top: 1.5rem; font-style: italic; }
+    .cta-assurance { margin-top: 1rem; font-size: 0.82rem; color: var(--muted); }
 
     /* ── FOOTER ── */
     footer {
@@ -747,63 +770,34 @@
 
     footer .brand { font-size: 1rem; margin-bottom: 0.5rem; display: block; }
 
-    .footer-districts {
-      font-size: 0.72rem;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      margin: 0.75rem 0;
-    }
+    .footer-districts { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; margin: 0.75rem 0; }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.25rem;
-      margin: 1rem 0;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.82rem;
-      transition: color 0.2s;
-    }
+    .footer-links { display: flex; justify-content: center; gap: 1.25rem; margin: 1rem 0; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--green); }
 
-    .copyright {
-      font-size: 0.72rem;
-      color: rgba(107,125,112,0.5);
-      margin-top: 0.75rem;
-    }
+    .copyright { font-size: 0.72rem; color: rgba(107,125,112,0.5); margin-top: 0.75rem; }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-up {
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards;
-    }
-
+    .fade-up { opacity: 0; animation: fadeUp 0.7s ease forwards; }
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.22s; }
     .delay-3 { animation-delay: 0.34s; }
     .delay-4 { animation-delay: 0.46s; }
     .delay-5 { animation-delay: 0.58s; }
 
-    /* Scroll observer targets */
     .observe {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.65s ease, transform 0.65s ease;
     }
-    .observe.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .observe.visible { opacity: 1; transform: translateY(0); }
 
-    /* Mobile tweaks */
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
       .hero-inner { padding: 3rem 0 2rem; }
@@ -813,7 +807,9 @@
 </head>
 <body>
 
-<!-- Kerala map SVG silhouette (faint bg) -->
+<!-- ── WARM PARTICLE CANVAS ── -->
+<canvas id="particles-canvas"></canvas>
+
 <svg class="kerala-bg" viewBox="0 0 300 700" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path d="M180 10 C200 30 210 60 205 90 C215 120 225 150 215 180 C230 210 225 240 210 265 
            C220 295 215 325 200 350 C210 380 205 415 185 445 C175 480 160 510 140 540 
@@ -824,40 +820,30 @@
         fill="white"/>
 </svg>
 
-<!-- NAV -->
 <nav>
   <span class="brand">Tech<span>Tharangam</span></span>
   <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20need%20career%20help" 
-     class="nav-cta" target="_blank" rel="noopener">Get Help →</a>
+     class="nav-cta" target="_blank" rel="noopener">Talk to Arjun →</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-inner">
-      <div class="hero-badge fade-up delay-1">Kerala's Tech Career Wave</div>
-
+      <div class="hero-badge fade-up delay-1">• 200+ Kerala freshers stuck right now</div>
       <h1 class="fade-up delay-2">
-        You Applied<br />
-        <span class="accent">Everywhere.</span><br />
-        Heard <span class="accent-s">Nothing</span> Back.
+        Months of applying.<br />
+        <span class="accent">Zero replies.</span><br />
+        Something is wrong —<br />
+        <span class="accent-s">and it's not you.</span>
       </h1>
-
       <p class="hero-sub fade-up delay-3">
-        It's not your degree. It's not your skills.<br />
-        The system filtered you out before a human read your name.
+        98% of resumes are rejected before a human ever opens them.
       </p>
-
       <p class="ml-line fade-up delay-4">ഇത് നിങ്ങളുടെ തെറ്റല്ല — This is not your fault.</p>
-
       <div class="hero-btns fade-up delay-5">
-        <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20to%20fix%20my%20resume" 
-           class="btn-primary" target="_blank" rel="noopener">
-          💬 WhatsApp — Fix This Now
-        </a>
-        <a href="#services" class="btn-secondary">View Services ↓</a>
+        <a href="#pain" class="btn-secondary" style="font-size:1rem; padding:0.85rem 1.75rem;">See why this happens ↓</a>
       </div>
-
       <p class="districts fade-up delay-5" style="animation-delay:0.7s">
         Kochi &nbsp;·&nbsp; Trivandrum &nbsp;·&nbsp; Calicut &nbsp;·&nbsp; Thrissur &nbsp;·&nbsp; Ernakulam &nbsp;·&nbsp; All Kerala
       </p>
@@ -871,6 +857,29 @@
     <p class="section-label observe">The Reality</p>
     <h2 class="observe">Here's what nobody<br />tells Kerala freshers.</h2>
 
+    <!-- Act 1: Mirror -->
+    <div class="pain-mirror observe">
+      <p class="pain-mirror-intro">Before we talk about solutions —</p>
+      <p class="pain-mirror-intro" style="color:var(--muted); font-style:italic; margin-top:0.3rem;">Can we just acknowledge something?</p>
+      <div class="mirror-list">
+        <div class="mirror-item">✓ You followed the rules.</div>
+        <div class="mirror-item">✓ You got the degree.</div>
+        <div class="mirror-item">✓ You applied on Naukri, LinkedIn, Indeed.</div>
+        <div class="mirror-item">✓ You waited. And waited.</div>
+        <div class="mirror-item">✓ You applied again.</div>
+        <div class="mirror-item">✓ You edited your resume 12 times.</div>
+        <div class="mirror-item">✓ You still heard nothing.</div>
+      </div>
+      <p class="mirror-conclusion">
+        That's not laziness.<br />
+        That's not incompetence.<br />
+        That's what happens when nobody teaches you<br />
+        <strong>how the filter actually works.</strong>
+      </p>
+    </div>
+
+    <!-- Act 2 + 3: Name the villain + insights -->
+    <p class="section-label observe" style="margin-top: 3rem;">The System Was Never Fair to Freshers</p>
     <div class="pain-grid">
       <div class="pain-card observe">
         <div class="pain-icon">⚠️</div>
@@ -897,54 +906,9 @@
         <p><strong>SOC? Pentesting? GRC? DFIR?</strong> No one tells freshers which path fits them. They apply everywhere. Land nowhere.</p>
       </div>
     </div>
-
     <div class="pain-closer observe">
       You're not failing because you're unqualified.<br />
       <strong>You're failing because nobody taught you how the system actually works.</strong>
-    </div>
-  </div>
-</section>
-
-<!-- MARKET -->
-<section id="market">
-  <div class="container">
-    <p class="section-label observe">Proof of Demand</p>
-    <h2 class="observe">These companies are hiring<br />in Kerala <span style="color:var(--green)">right now.</span></h2>
-    <p class="observe" style="color:var(--muted); margin-top:0.5rem;">The jobs exist. The gap is between you and the shortlist.</p>
-
-    <div class="company-grid">
-      <div class="company-chip observe">
-        ValueMentor<span class="company-loc">Kochi · SOC / VAPT</span>
-      </div>
-      <div class="company-chip observe">
-        Beagle Security<span class="company-loc">Kochi · Pentesting</span>
-      </div>
-      <div class="company-chip observe">
-        UST Global<span class="company-loc">Trivandrum · Security</span>
-      </div>
-      <div class="company-chip observe">
-        Soffit Infra<span class="company-loc">Kochi · Cybersecurity</span>
-      </div>
-      <div class="company-chip observe">
-        Wattlecorp<span class="company-loc">Calicut · Red Team</span>
-      </div>
-      <div class="company-chip observe">
-        Mirox Cyber<span class="company-loc">Technopark · SOC</span>
-      </div>
-      <div class="company-chip observe">
-        Wipro · EY<span class="company-loc">Infopark · Multiple roles</span>
-      </div>
-      <div class="company-chip observe">
-        Cognizant<span class="company-loc">Infopark · IT Security</span>
-      </div>
-    </div>
-
-    <div class="salary-banner observe">
-      <div class="big">₹5–10 LPA</div>
-      <div>
-        <p style="color:var(--text); font-weight:600;">Starting salary for Kerala IT freshers who break in correctly</p>
-        <p>The roles are real. The salaries are real. <strong>The only gap is between you and the shortlist.</strong></p>
-      </div>
     </div>
   </div>
 </section>
@@ -956,13 +920,24 @@
       <div>
         <div class="photo-block observe">
           <img src="pics/arjus.jpg" alt="Arjun Saji" 
-       style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />
-          </div>
-
+               style="width:100%; height:100%; object-fit:cover; border-radius:14px;" />
+        </div>
       </div>
       <div>
         <p class="section-label observe">Who I Am</p>
-        <h2 class="observe" style="font-size:1.9rem;">I went through this.<br />Then I cracked it.</h2>
+        <h2 class="observe" style="font-size:1.9rem;">Arjun Saji —<br />CEH v13 · MSc Cybersecurity</h2>
+
+        <div class="about-story observe">
+          I sent 87 applications after my MSc.<br />
+          Zero replies. Not even a rejection email.<br /><br />
+          I sat with my resume open at 2am wondering<br />
+          <strong>what's wrong with me.</strong><br /><br />
+          Nothing was wrong with me.<br />
+          My resume was being auto-rejected in 3 seconds<br />
+          before anyone read my name.<br /><br />
+          I figured it out. The hard way.<br />
+          <em>Now I make sure Kerala freshers don't have to.</em>
+        </div>
 
         <ul class="cred-list observe">
           <li>CEH v13 Certified — EC-Council</li>
@@ -974,18 +949,36 @@
           <li>11,000+ LinkedIn connections in cybersecurity</li>
         </ul>
 
-        <p class="observe" style="color:var(--muted); font-size:0.9rem; margin-top:1rem;">
-          I applied everywhere. Months of silence. Then I figured out how ATS systems actually work — which file format, which keywords, which companies use which portals. Now I help Kerala freshers skip the confusion entirely.
-        </p>
-
         <div class="profile-btns observe">
-          <a href="https://www.linkedin.com/in/arjunsaji/" class="btn-ghost" target="_blank" rel="noopener">
-            🔗 LinkedIn Profile
-          </a>
-          <a href="https://github.com/A-rjun-saji" class="btn-ghost" target="_blank" rel="noopener">
-            💻 GitHub Portfolio
-          </a>
+          <a href="https://www.linkedin.com/in/arjunsaji/" class="btn-ghost" target="_blank" rel="noopener">🔗 LinkedIn Profile</a>
+          <a href="https://github.com/A-rjun-saji" class="btn-ghost" target="_blank" rel="noopener">💻 GitHub Portfolio</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="container">
+    <p class="section-label observe">Proof of Demand</p>
+    <h2 class="observe">These companies are hiring<br />in Kerala <span style="color:var(--green)">right now.</span></h2>
+    <p class="observe" style="color:var(--muted); margin-top:0.5rem;">The jobs exist. The gap is between you and the shortlist.</p>
+    <div class="company-grid">
+      <div class="company-chip observe">ValueMentor<span class="company-loc">Kochi · SOC / VAPT</span></div>
+      <div class="company-chip observe">Beagle Security<span class="company-loc">Kochi · Pentesting</span></div>
+      <div class="company-chip observe">UST Global<span class="company-loc">Trivandrum · Security</span></div>
+      <div class="company-chip observe">Soffit Infra<span class="company-loc">Kochi · Cybersecurity</span></div>
+      <div class="company-chip observe">Wattlecorp<span class="company-loc">Calicut · Red Team</span></div>
+      <div class="company-chip observe">Mirox Cyber<span class="company-loc">Technopark · SOC</span></div>
+      <div class="company-chip observe">Wipro · EY<span class="company-loc">Infopark · Multiple roles</span></div>
+      <div class="company-chip observe">Cognizant<span class="company-loc">Infopark · IT Security</span></div>
+    </div>
+    <div class="salary-banner observe">
+      <div class="big">₹5–10 LPA</div>
+      <div>
+        <p style="color:var(--text); font-weight:600;">Starting salary for Kerala IT freshers who break in correctly</p>
+        <p>The roles are real. The salaries are real. <strong>The only gap is between you and the shortlist.</strong></p>
       </div>
     </div>
   </div>
@@ -995,87 +988,87 @@
 <section id="services">
   <div class="container">
     <p class="section-label observe">Services</p>
-    <h2 class="observe">Not what you get —<br /><span style="color:var(--green)">what happens after.</span></h2>
+    <h2 class="observe">Pick your problem.<br /><span style="color:var(--green)">I'll fix it.</span></h2>
     <p class="observe" style="color:var(--muted); margin-top:0.5rem;">Every service is built around your specific situation. No templates. No generic advice.</p>
 
     <div class="services-grid">
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20an%20ATS%20Resume%20Review%20%E2%82%B9499" 
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20an%20ATS%20Resume%20Review" 
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">🔍</div>
         <h3>ATS Resume Review</h3>
-        <div class="service-price">₹499</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> You know exactly why you're being rejected and the precise fixes needed. PDF vs DOCX — right format per ATS portal. Delivered in 48 hours.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20a%20Resume%20Rewrite%20%E2%82%B91499"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20a%20Resume%20Rewrite"
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">📄</div>
         <h3>Resume Rewrite</h3>
-        <div class="service-price">₹1,499</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> Your resume passes Workday, iCIMS, Taleo, and Greenhouse. Right keywords. Right format. Right file type — delivered to you.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20a%20Career%20Clarity%20Call%20%E2%82%B9699"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20a%20Career%20Clarity%20Call"
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">🧭</div>
         <h3>Career Clarity Call</h3>
-        <div class="service-price">₹699</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> You know your exact path — SOC / Pentest / GRC / DFIR / Cloud. No more confusion. Personal profile mapped before the call. 1 hour.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Skill%20Roadmap%20%2B%20Lab%20Pack%20%E2%82%B9999"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Skill%20Roadmap%20%2B%20Lab%20Pack"
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">🗺️</div>
         <h3>Skill Roadmap + Lab Pack</h3>
-        <div class="service-price">₹999</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> 90-day plan, working home lab guide, and GitHub projects that make HR notice you. Custom built for your system specs.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20LinkedIn%20Profile%20Optimization%20%E2%82%B9799"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20LinkedIn%20Profile%20Optimization"
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">💼</div>
         <h3>LinkedIn Optimization</h3>
-        <div class="service-price">₹799</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> Your headline, About, and Skills section rewritten for ATS and recruiter visibility. Recruiters find you. Not the other way around.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Referral%20Strategy%20Session%20%E2%82%B9499"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Referral%20Strategy%20Session"
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">🔗</div>
         <h3>Referral Strategy Session</h3>
-        <div class="service-price">₹499</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> Exact DM templates, who to contact, how to find referrers at target Kerala companies. Referral beats cold apply every time.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458text=Hi%20Arjun%2C%20I%20want%20the%20Project%20%2B%20Lab%20Setup%20Guide%20%E2%82%B91499"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Project%20%2B%20Lab%20Setup%20Guide"
          class="service-card observe" target="_blank" rel="noopener">
         <div class="service-emoji">🧪</div>
         <h3>Project + Lab Setup Guide</h3>
-        <div class="service-price">₹1,400</div>
+        <div class="service-price-tag">Paid · Affordable</div>
         <p class="service-after">
           <strong>After this:</strong> Custom VM plan based on your actual system specs. PowerShell diagnostic script included. Lab built. Projects ready for GitHub.
         </p>
       </a>
 
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Full%20Bundle%20%E2%82%B93999"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20the%20Full%20Bundle"
          class="service-card featured observe" target="_blank" rel="noopener">
         <span class="featured-tag">Best Value</span>
         <div class="service-emoji">📦</div>
         <h3>Full Bundle — Get Hired</h3>
-        <div class="service-price">₹3,200</div>
+        <div class="service-price-tag">Paid · Best Deal</div>
         <p class="service-after">
           <strong>After this:</strong> Resume fixed. Career path clear. Roadmap built. Lab set up. LinkedIn optimized. Referral strategy ready. You apply with confidence.
         </p>
@@ -1090,7 +1083,6 @@
   <div class="container">
     <p class="section-label observe">Process</p>
     <h2 class="observe">3 Steps. That's it.</h2>
-
     <div class="steps">
       <div class="step observe">
         <div class="step-num">01</div>
@@ -1108,7 +1100,6 @@
         <p>Not generic advice. Kerala-specific. Actionable. You leave knowing exactly what to do next.</p>
       </div>
     </div>
-
     <p class="observe" style="text-align:center; margin-top:2rem; color:var(--muted); font-style:italic;">
       "നിങ്ങളുടെ വഴി ഞാൻ കാണിച്ചുതരാം" — I will show you your path.
     </p>
@@ -1120,22 +1111,17 @@
   <div class="container">
     <div class="urgency-box observe">
       <div class="urgency-text">
-        <h3>⚠️ Limited Slots This Week</h3>
-        <p>I work with a small number of clients at a time to ensure quality. This week:</p>
-        <div style="margin-top:0.75rem; display:flex; align-items:center; gap:0.75rem;">
-          <div class="slots">
-            <div class="slot open"></div>
-            <div class="slot open"></div>
-            <div class="slot open"></div>
-            <div class="slot taken"></div>
-            <div class="slot taken"></div>
-          </div>
-          <span style="font-size:0.85rem; color:var(--text);">3 slots open</span>
-        </div>
+        <h3>I personally handle every client.</h3>
+        <p>No team. No automation. No templates.<br />
+        That means I can only take a few people at a time.</p>
+        <p style="margin-top:0.75rem; color:var(--text); font-size:0.9rem;">
+          If you're ready — message me now.<br />
+          If you're not — no pressure. Come back when you are.
+        </p>
       </div>
-      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20want%20to%20reserve%20a%20slot"
+      <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%27m%20ready%20to%20start"
          class="btn-primary" target="_blank" rel="noopener">
-        💬 Reserve Your Slot
+        💬 Talk to Arjun
       </a>
     </div>
   </div>
@@ -1146,26 +1132,24 @@
   <div class="container">
     <p class="section-label observe">Credentials</p>
     <h2 class="observe">Real experience.<br />Not just a certificate.</h2>
-
     <div class="trust-grid">
       <div class="trust-card observe">
         <div class="trust-num">11K+</div>
-        <p>LinkedIn connections in cybersecurity</p>
+        <p>Cybersecurity connections — which means your resume lands in front of people who are actually hiring.</p>
       </div>
       <div class="trust-card observe">
         <div class="trust-num">57K+</div>
-        <p>Security events analyzed in DFIR lab</p>
+        <p>Security events analyzed — that's more than most SOC analysts see in their first year on the job.</p>
       </div>
       <div class="trust-card observe">
         <div class="trust-num">200+</div>
-        <p>Kerala cybersecurity roles open right now</p>
+        <p>Kerala cybersecurity roles open right now — the demand is real. The gap is the shortlist.</p>
       </div>
       <div class="trust-card observe">
         <div class="trust-num">48hr</div>
-        <p>Turnaround on resume reviews</p>
+        <p>Turnaround on resume reviews — you know what's wrong and what to fix before the week is out.</p>
       </div>
     </div>
-
     <div style="text-align:center; margin-top:1.5rem;">
       <div class="ceh-badge observe">
         🏅 CEH v13 Certified &nbsp;|&nbsp; EC-Council &nbsp;|&nbsp; MSc Cybersecurity
@@ -1179,19 +1163,18 @@
   <div class="container">
     <p class="section-label observe">FAQ</p>
     <h2 class="observe">Your questions,<br />answered honestly.</h2>
-
     <div class="faq-list observe">
       <details>
-        <summary>I'm a fresher with zero experience. Can you still help?</summary>
-        <p>That's exactly who I work with. Zero experience is the starting point, not a disqualifier. Most of my service is built specifically for freshers coming out of BCA, MCA, B.Tech, and MSc in Kerala.</p>
+        <summary>Honestly, I'm embarrassed to even ask for help.</summary>
+        <p>That feeling is more common than you think — and it's exactly why most freshers stay stuck. Asking for help isn't a weakness. It's the one move that separates people who break in from people who keep wondering why they don't. Everyone I work with started from the same place.</p>
+      </details>
+      <details>
+        <summary>I've been burned by online advice before. Why is this different?</summary>
+        <p>Generic advice comes from people who've never applied to a Kerala company, never used Workday, never dealt with the exact ATS portals ValueMentor or UST use. I went through this exact process. I know which file format gets rejected on Workday before anyone reads it. That's not a YouTube video — that's lived experience.</p>
       </details>
       <details>
         <summary>I'm not from Kochi. Does this work for Trivandrum / Calicut / Thrissur?</summary>
         <p>100% online. Kerala-wide. The companies I cover hire across all districts — Infopark (Kochi), Technopark (Trivandrum), Cyberpark (Calicut). Location doesn't limit you.</p>
-      </details>
-      <details>
-        <summary>How do I know this will actually work?</summary>
-        <p>I went through the same process you're going through. I know which companies use which ATS. I know what Kerala HR teams look for. I know which file format gets rejected on Workday before anyone reads it. That's not something you find in a generic resume template online.</p>
       </details>
       <details>
         <summary>What if I have no idea which career path to choose?</summary>
@@ -1213,17 +1196,15 @@
 <section id="cta">
   <div class="container">
     <p class="section-label observe" style="text-align:center;">Get Started</p>
-    <h2 class="observe">Stop guessing.<br />Start getting shortlisted.</h2>
-    <p class="observe">Real person. Kerala-based. Same day reply.</p>
-
+    <h2 class="observe">You've been doing<br />everything right.</h2>
+    <p class="observe" style="max-width:460px; margin:0 auto 2.5rem;">The system just never told you the rules.<br />Let's fix that. Today.</p>
     <div class="observe" style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
       <a href="https://wa.me/918593870458?text=Hi%20Arjun%2C%20I%20need%20help%20with%20my%20career"
          class="btn-primary" target="_blank" rel="noopener" style="font-size:1.1rem; padding:1rem 2.25rem;">
-        💬 Message on WhatsApp
+        💬 Talk to Arjun on WhatsApp
       </a>
       <p class="cta-assurance">+91 8593870458 &nbsp;·&nbsp; Free to start &nbsp;·&nbsp; No spam</p>
     </div>
-
     <p class="ml-cta observe">ഇന്ന് തന്നെ തുടങ്ങാം — Let's start today.</p>
   </div>
 </section>
@@ -1244,7 +1225,80 @@
 </footer>
 
 <script>
-  // Scroll observer for .observe elements
+  // ── WARM PARTICLE SYSTEM ──
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let W, H;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Warm colors: saffron, gold, soft green
+  const PALETTE = [
+    'rgba(255,107,53,',   // saffron
+    'rgba(255,184,0,',    // gold
+    'rgba(0,168,107,',    // green
+    'rgba(255,140,80,',   // warm amber
+  ];
+
+  const PARTICLE_COUNT = 55;
+  const particles = [];
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: 1.2 + Math.random() * 2.8,
+      color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+      alpha: 0.15 + Math.random() * 0.35,
+      speedX: (Math.random() - 0.5) * 0.25,
+      speedY: -0.15 - Math.random() * 0.3,   // float upward
+      pulseSpeed: 0.008 + Math.random() * 0.012,
+      pulsePhase: Math.random() * Math.PI * 2,
+    });
+  }
+
+  let frame = 0;
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    frame++;
+
+    particles.forEach(p => {
+      // Gentle pulsing alpha
+      const alphaVal = p.alpha * (0.6 + 0.4 * Math.sin(frame * p.pulseSpeed + p.pulsePhase));
+
+      // Soft radial glow
+      const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3.5);
+      grad.addColorStop(0, p.color + alphaVal + ')');
+      grad.addColorStop(1, p.color + '0)');
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Move
+      p.x += p.speedX;
+      p.y += p.speedY;
+
+      // Wrap around
+      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+    });
+
+    requestAnimationFrame(drawParticles);
+  }
+
+  drawParticles();
+
+  // ── SCROLL OBSERVER ──
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
